@@ -26,3 +26,8 @@ npm test
 npm run build # Builds the app for production to the `build` folder
 npm run deploy -- -m "Deploy React app to GitHub Pages" # Update github pages
 ```
+
+## Special thanks to...
+
+- [Create react template](https://create-react-app.dev/)
+- [Useful guide on setting up github pages with react](https://github.com/gitname/react-gh-pages)
