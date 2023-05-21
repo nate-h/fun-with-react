@@ -1,0 +1,8 @@
+@use "./variables.scss" as *;
+
+.Card {
+    background-color: $bg-2;
+    border-radius: 5px;
+    padding: 1em;
+    box-shadow: 0 0 0 2px rgba(23, 23, 23, 0.15);
+}

@@ -1,24 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './reset.scss';
+import './App.scss';
+import TicTacToe from './tic-tac-toe/TicTacToe'
+import Calculator from './calculator/Calculator'
+import CardMemoryGame from './card-memory-game/CardMemoryGame'
+import Sidebar from "./sidebar/Sidebar"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Sidebar></Sidebar>
+      <main>
+        <ul>
+          <li><TicTacToe></TicTacToe></li>
+          <li><Calculator></Calculator></li>
+          <li><CardMemoryGame></CardMemoryGame></li>
+        </ul>
+      </main>
     </div>
   );
 }

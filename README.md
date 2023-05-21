@@ -5,11 +5,11 @@ Small react examples to learn react
 Examples:
 
 - [ ] tic-tac-toe
-- [ ] hangman
+- [ ] calculator
+- [ ] card memory game
 - [ ] todo-list
 - [ ] wordle
-- [ ] card memory game
-- [ ] calculator
+- [ ] hangman
 - [ ] timer
 - [ ] image manipulator
 - [ ] drawing app
