@@ -1,6 +1,9 @@
 # Fun with React
 
-Small react examples to learn react
+Fun with React is my attempt at learning some React basics by implementing 10
+popular simple apps like tic-tac-toe or Wordle.
+
+Check out a live version here: https://nate-h.github.io/fun-with-react
 
 Examples:
 
