@@ -17,7 +17,6 @@ Examples:
 - [ ] dictionary
 - [ ] card
 
-
 ## Commands
 
 ```sh
@@ -31,3 +30,4 @@ npm run deploy -- -m "Deploy React app to GitHub Pages" # Update github pages
 
 - [Create react template](https://create-react-app.dev/)
 - [Useful guide on setting up github pages with react](https://github.com/gitname/react-gh-pages)
+- [guide to setup prettier](https://levelup.gitconnected.com/configure-eslint-and-prettier-for-your-react-project-like-a-pro-2022-10287986a1b6)
