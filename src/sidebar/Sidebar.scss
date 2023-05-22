@@ -1,32 +1,39 @@
+@use '../variables.scss' as *;
+
 .Sidebar {
-    width: 300px;
-    height: 100%;
+  width: 300px;
+  height: 100%;
+  padding: 1em;
+  background-color: $bg-1;
 
-    h1 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 20px;
+  h1 {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
 
-        .logo {
-            height: 5vmin;
-            margin-left: -10px;
-        }
+    .logo {
+      height: 5vmin;
+      margin-left: -10px;
+    }
+  }
+
+  h2 {
+    padding: 1.5em 0 0.5em;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .logo {
+      animation: logo-spin infinite 20s linear;
+    }
+  }
+
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-        .logo {
-            animation: logo-spin infinite 20s linear;
-        }
+    to {
+      transform: rotate(360deg);
     }
-
-    @keyframes logo-spin {
-        from {
-            transform: rotate(0deg);
-        }
-
-        to {
-            transform: rotate(360deg);
-        }
-    }
+  }
 }

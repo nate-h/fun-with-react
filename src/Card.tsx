@@ -3,11 +3,11 @@ import "./Card.scss"
 
 
 const CardHeader = (props: any) => (
-    <h1>{props.children}</h1>
+    <h1 className="CardHeader">{props.children}</h1>
 )
 
 const CardSubHeader = (props: any) => (
-    <h2 style={{ color: "gray" }}> {props.children}</h2 >
+    <h2 className="CardSubHeader"> {props.children}</h2 >
 )
 
 export default function Card(props: any) {
@@ -15,7 +15,7 @@ export default function Card(props: any) {
         <section className="Card">
             {props.header && <CardHeader>{props.header}</CardHeader>}
             {props.subheader && <CardSubHeader>{props.subheader}</CardSubHeader>}
-            {props.children}
+            <main>{props.children}</main>
         </section>
     )
 }
