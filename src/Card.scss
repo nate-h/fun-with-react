@@ -1,23 +1,23 @@
-@use "./variables.scss" as *;
+@use './variables.scss' as *;
 
 .Card {
-    $small-pad: 5px;
-    $large-pad: 1em;
-    background-color: $bg-1;
-    border-radius: 5px;
-    box-shadow: 0 0 0 2px rgba(23, 23, 23, 0.15);
+  $small-pad: 5px;
+  $large-pad: 1em;
+  background-color: $bg-1;
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px rgba(23, 23, 23, 0.15);
 
-    .CardHeader {
-        padding: $small-pad $large-pad $small-pad $large-pad;
-    }
+  .CardHeader {
+    margin-left: -3px;
+    padding: $small-pad $large-pad $small-pad $large-pad;
+  }
 
-    .CardSubHeader {
-        color: $c2;
-        padding: 0 $large-pad $small-pad $large-pad;
-    }
+  .CardSubHeader {
+    padding: 0 $large-pad $small-pad $large-pad;
+  }
 
-    >main {
-        background-color: $bg-2;
-        padding: $small-pad $large-pad $large-pad $large-pad;
-    }
+  > main {
+    background-color: $bg-2;
+    padding: $small-pad $large-pad $large-pad $large-pad;
+  }
 }

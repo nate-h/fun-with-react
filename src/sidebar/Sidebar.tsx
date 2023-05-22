@@ -3,16 +3,13 @@ import logo from '../logo.svg';
 import './Sidebar.scss';
 
 function Link({ name }: { name: string }) {
-  const linkClick = (loc: string, goto: any) => {
+  const linkClick = () => {
     console.log('goto: ', name);
+    // TODO: now call scrollToView
   };
   return (
     <li>
-      <button
-        onClick={(event) => {
-          linkClick('foo', event);
-        }}
-      >
+      <button className='link' onClick={linkClick}>
         {name}
       </button>
     </li>
