@@ -1,15 +1,21 @@
 import React from 'react';
 import Card from '../Card';
+import './TicTacToe.scss';
 
 export default function TicTacToe() {
+  let xsTurn = true;
+  const history = new Array(9).fill(null);
+  const reset = () => {
+    history.fill(null);
+  };
   return (
-    <Card header='Tic-Tac-Toe' subheader='no text'>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore aliquid unde quam in minus
-        incidunt cupiditate officiis ut et, excepturi maiores, vitae numquam voluptatum nesciunt,
-        perspiciatis animi quasi soluta quas.
-      </p>
-      <div style={{ width: 200, height: 200, background: 'white' }}></div>
+    <Card header='Tic-Tac-Toe'>
+      <section className='Tic-Tac-Toe'>
+        <p>Your move {xsTurn ? 'x' : 'o'}</p>
+        {history.map((h) => {
+          return <div className='cell'>{h}</div>;
+        })}
+      </section>
     </Card>
   );
 }

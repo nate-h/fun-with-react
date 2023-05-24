@@ -1,0 +1,9 @@
+@use '../variables.scss' as *;
+
+.TicTacToe {
+  .cell {
+    width: 10px;
+    height: 10px;
+    background-color: #aaa;
+  }
+}

@@ -1,21 +1,16 @@
-import React from "react";
-import "./Card.scss"
+import React from 'react';
+import './Card.scss';
 
+const CardHeader = (props: any) => <h1 className='CardHeader'>{props.children}</h1>;
 
-const CardHeader = (props: any) => (
-    <h1 className="CardHeader">{props.children}</h1>
-)
-
-const CardSubHeader = (props: any) => (
-    <h2 className="CardSubHeader"> {props.children}</h2 >
-)
+const CardSubHeader = (props: any) => <h2 className='CardSubHeader'> {props.children}</h2>;
 
 export default function Card(props: any) {
-    return (
-        <section className="Card">
-            {props.header && <CardHeader>{props.header}</CardHeader>}
-            {props.subheader && <CardSubHeader>{props.subheader}</CardSubHeader>}
-            <main>{props.children}</main>
-        </section>
-    )
+  return (
+    <section className='Card'>
+      {props.header && <CardHeader>{props.header}</CardHeader>}
+      {props.subheader && <CardSubHeader>{props.subheader}</CardSubHeader>}
+      <main>{props.children}</main>
+    </section>
+  );
 }
