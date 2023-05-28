@@ -1,9 +1,17 @@
 @use '../variables.scss' as *;
 
 .TicTacToe {
-  .cell {
-    width: 10px;
-    height: 10px;
-    background-color: #aaa;
+  > .board {
+    display: grid;
+    grid-template-columns: 2em 2em 2em;
+    grid-gap: 1px;
+    > button {
+      aspect-ratio: 1;
+      background-color: red;
+
+      &.active {
+        cursor: pointer;
+      }
+    }
   }
 }

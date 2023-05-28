@@ -1,25 +1,14 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
 import Card from '../Card';
 import './TicTacToe.scss';
-import styled from 'styled-components';
-
-const Board = styled.div`
-  display: grid;
-  grid-template-columns: 2em 2em 2em;
-  grid-gap: 1px;
-`;
-
-const Cell = styled.button`
-  aspect-ratio: 1;
-  background-color: red;
-`;
 
 export default function TicTacToe() {
   type MoveOptions = 'x' | 'o';
   type CellOptions = MoveOptions | null;
   const [grid, setGrid] = useState<CellOptions[]>(Array<CellOptions>(9).fill(null));
   const [moves, setMoves] = useState<MoveOptions[]>([]);
-  const xsTurn = moves.length % 2 == 0;
+  const xsTurn = moves.length % 2 === 0;
   const whoseTurn = xsTurn ? 'x' : 'o';
 
   const reset = () => {
@@ -43,18 +32,23 @@ export default function TicTacToe() {
 
   return (
     <Card header='Tic-Tac-Toe'>
-      <section className='Tic-Tac-Toe'>
+      <section className='TicTacToe'>
         <p>Your move {whoseTurn}</p>
         <button onClick={reset}>Reset</button>
-        <Board>
+        <div className='board'>
           {grid.map((h, index) => {
             return (
-              <Cell key={index} onClick={() => cellClick(index)}>
+              <button
+                key={index}
+                onClick={() => cellClick(index)}
+                className={clsx({ active: grid[index] == null })}
+                disabled={grid[index] != null}
+              >
                 {h}
-              </Cell>
+              </button>
             );
           })}
-        </Board>
+        </div>
       </section>
     </Card>
   );
