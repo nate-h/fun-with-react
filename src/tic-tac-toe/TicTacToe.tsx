@@ -18,11 +18,8 @@ const findWinner = (grid: CellOptions[]): CellOptions => {
   ];
   for (const winningCombo of winningCombos) {
     const [a, b, c] = winningCombo.map((index) => grid[index]);
-    if (a === b && a === c && a === 'x') {
-      return 'x';
-    }
-    if (a === b && a === c && a === 'o') {
-      return 'o';
+    if (a === b && a === c && ['x', 'o'].includes(a)) {
+      return a;
     }
   }
   return ' ';
@@ -34,11 +31,20 @@ export default function TicTacToe() {
   const xsTurn = moves.length % 2 === 0;
   const whoseTurn = xsTurn ? 'x' : 'o';
   const [gameOver, setGameOver] = useState<boolean>(false);
+  const [score, setScore] = useState({ x: 0, o: 0 });
 
-  const reset = () => {
+  const headerText = gameOver ? `Game over` : `${whoseTurn} turn`;
+
+  const newGame = () => {
     grid.fill(' ');
     setGrid([...grid]);
     setMoves([]);
+    setGameOver(false);
+  };
+
+  const reset = () => {
+    newGame();
+    setScore({ x: 0, o: 0 });
   };
 
   const cellClick = (index: number) => {
@@ -46,15 +52,20 @@ export default function TicTacToe() {
     setGrid([...grid]);
     setMoves([...moves, whoseTurn]);
     let winner;
-    if ((winner = findWinner(grid) !== ' ')) {
+    if ((winner = findWinner(grid)) !== ' ') {
       setGameOver(true);
+      score[winner] += 1;
+      setScore({ ...score });
     }
   };
 
   return (
     <Card header='Tic-Tac-Toe'>
       <section className='TicTacToe'>
+        {headerText}
         <p>Your move {whoseTurn}</p>
+        Score: x: {score['x']} | o: {score['o']}
+        <button onClick={newGame}>New Game</button>
         <button onClick={reset}>Reset</button>
         <div className='board'>
           {grid.map((c, index) => {
