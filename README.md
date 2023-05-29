@@ -7,18 +7,19 @@ Check out a live version here: https://nate-h.github.io/fun-with-react
 
 Examples:
 
-- [ ] tic-tac-toe
+- [*] card: every example uses the same card component
+- [*] tic-tac-toe
+- [ ] timer
+- [ ] use dictionary api to show info on words
+- [ ] use public dog api to display cute pics of dogs
 - [ ] calculator
 - [ ] card memory game
 - [ ] todo-list
 - [ ] wordle
 - [ ] hangman
-- [ ] timer
 - [ ] image manipulator
 - [ ] drawing app
 - [ ] modal
-- [ ] dictionary
-- [ ] card
 
 ## Commands
 

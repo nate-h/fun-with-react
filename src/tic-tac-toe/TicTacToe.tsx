@@ -3,7 +3,9 @@ import clsx from 'clsx';
 import Card from '../Card';
 import './TicTacToe.scss';
 
-type CellOptions = 'x' | 'o' | ' ';
+type Players = 'x' | 'o';
+type CellOptions = Players | ' ';
+const players: Array<Players> = ['x', 'o'];
 
 const findWinner = (grid: CellOptions[]): CellOptions => {
   const winningCombos = [
@@ -75,18 +77,21 @@ export default function TicTacToe() {
           })}
         </div>
         <div className='controls'>
-          <ul>
-            <li>{gameOver ? `Game over!` : `Turn: ${whoseTurn}`}</li>
-            <li>
-              x: {score['x']} - o: {score['o']}
-            </li>
-            <li>
-              <button onClick={newGame}>New Game</button>
-            </li>
-            <li>
-              <button onClick={reset}>Reset</button>
-            </li>
-          </ul>
+          <div className='score'>
+            {players.map((player) => (
+              <ul key={player}>
+                <li className={clsx({ active: whoseTurn === player })}>{player}</li>
+                <li>{score[player]}</li>
+              </ul>
+            ))}
+          </div>
+          <div>
+            <button onClick={newGame}>New Game</button>
+          </div>
+          <div>
+            <button onClick={reset}>Reset</button>
+          </div>
+          <div>{gameOver ? `Game over!` : null}</div>
         </div>
       </section>
     </Card>

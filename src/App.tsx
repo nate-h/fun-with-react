@@ -5,22 +5,27 @@ import TicTacToe from './tic-tac-toe/TicTacToe';
 import Calculator from './calculator/Calculator';
 import CardMemoryGame from './card-memory-game/CardMemoryGame';
 import Sidebar from './sidebar/Sidebar';
+import Timer from './timer/Timer';
+import WordDefinition from './word-definition/WordDefinition';
+import DogImages from './dog-images/DogImages';
 
 function App() {
+  const components = [
+    <TicTacToe />,
+    //Calculator,
+    <Timer />,
+    //CardMemoryGame,
+    //WordDefinition,
+    //DogImages,
+  ];
   return (
     <div className='App'>
-      <Sidebar></Sidebar>
+      <Sidebar components={components}></Sidebar>
       <main>
         <ul>
-          <li>
-            <TicTacToe></TicTacToe>
-          </li>
-          <li>
-            <Calculator></Calculator>
-          </li>
-          <li>
-            <CardMemoryGame></CardMemoryGame>
-          </li>
+          {components.map((Component) => (
+            <li key={Component.type.name}>{Component}</li>
+          ))}
         </ul>
       </main>
     </div>
