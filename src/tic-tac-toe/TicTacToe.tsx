@@ -33,8 +33,6 @@ export default function TicTacToe() {
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [score, setScore] = useState({ x: 0, o: 0 });
 
-  const headerText = gameOver ? `Game over` : `${whoseTurn} turn`;
-
   const newGame = () => {
     grid.fill(' ');
     setGrid([...grid]);
@@ -62,24 +60,33 @@ export default function TicTacToe() {
   return (
     <Card header='Tic-Tac-Toe'>
       <section className='TicTacToe'>
-        {headerText}
-        <p>Your move {whoseTurn}</p>
-        Score: x: {score['x']} | o: {score['o']}
-        <button onClick={newGame}>New Game</button>
-        <button onClick={reset}>Reset</button>
         <div className='board'>
           {grid.map((c, index) => {
             return (
               <button
                 key={index}
                 onClick={() => cellClick(index)}
-                className={clsx({ active: grid[index] === ' ' })}
+                className={clsx({ active: grid[index] === ' ' && !gameOver })}
                 disabled={grid[index] !== ' ' || gameOver}
               >
                 {c}
               </button>
             );
           })}
+        </div>
+        <div className='controls'>
+          <ul>
+            <li>{gameOver ? `Game over!` : `Turn: ${whoseTurn}`}</li>
+            <li>
+              x: {score['x']} - o: {score['o']}
+            </li>
+            <li>
+              <button onClick={newGame}>New Game</button>
+            </li>
+            <li>
+              <button onClick={reset}>Reset</button>
+            </li>
+          </ul>
         </div>
       </section>
     </Card>
