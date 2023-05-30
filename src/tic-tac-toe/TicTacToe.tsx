@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import Card from '../Card';
 import './TicTacToe.scss';
 
-type Players = 'x' | 'o';
+type Players = 'X' | 'O';
 type CellOptions = Players | ' ';
-const players: Array<Players> = ['x', 'o'];
+const players: Array<Players> = ['X', 'O'];
 
 const findWinner = (grid: CellOptions[]): CellOptions => {
   const winningCombos = [
@@ -20,7 +20,7 @@ const findWinner = (grid: CellOptions[]): CellOptions => {
   ];
   for (const winningCombo of winningCombos) {
     const [a, b, c] = winningCombo.map((index) => grid[index]);
-    if (a === b && a === c && ['x', 'o'].includes(a)) {
+    if (a === b && a === c && players.some((p) => p === a)) {
       return a;
     }
   }
@@ -32,9 +32,9 @@ export default function TicTacToe() {
   const [moves, setMoves] = useState<CellOptions[]>([]);
   const [gameOverText, setGameOverText] = useState<string>('');
   const [roundCount, setRoundCount] = useState<number>(0);
-  const [score, setScore] = useState({ x: 0, o: 0 });
+  const [score, setScore] = useState({ X: 0, O: 0 });
   const xsTurn = (moves.length + roundCount) % 2 === 0;
-  const whoseTurn = xsTurn ? 'x' : 'o';
+  const whoseTurn = xsTurn ? 'X' : 'O';
 
   const newRound = () => {
     grid.fill(' ');
@@ -46,7 +46,7 @@ export default function TicTacToe() {
 
   const reset = () => {
     newRound();
-    setScore({ x: 0, o: 0 });
+    setScore({ X: 0, O: 0 });
     setRoundCount(0);
   };
 
