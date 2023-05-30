@@ -1,2 +1,16 @@
-.Stop-Watch {
+@use '../variables.scss' as *;
+
+.StopWatch {
+  button {
+    border: none;
+    color: white;
+    background-color: #666;
+    border-radius: $br-1;
+  }
+  .start {
+    background-color: $c4;
+  }
+  .stop {
+    background-color: crimson;
+  }
 }

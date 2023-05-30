@@ -60,7 +60,7 @@ export default function TicTacToe() {
       setGameOverText(`Game over. ${winner} won!`);
       score[winner] += 1;
       setScore({ ...score });
-    } else if (newMoves.length == 9) {
+    } else if (newMoves.length === 9) {
       setGameOverText('Game over. Draw');
     }
   };
