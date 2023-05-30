@@ -30,20 +30,24 @@ const findWinner = (grid: CellOptions[]): CellOptions => {
 export default function TicTacToe() {
   const [grid, setGrid] = useState<CellOptions[]>(Array<CellOptions>(9).fill(' '));
   const [moves, setMoves] = useState<CellOptions[]>([]);
-  const xsTurn = moves.length % 2 === 0;
-  const whoseTurn = xsTurn ? 'x' : 'o';
-  const [gameOver, setGameOver] = useState<boolean>(false);
+  const [gameOverText, setGameOverText] = useState<string>('');
   const [score, setScore] = useState({ x: 0, o: 0 });
+  const xsTurn = (moves.length + score['x'] + score['o']) % 2 === 0;
+  const whoseTurn = xsTurn ? 'x' : 'o';
 
-  const newGame = () => {
+  if (moves.length == 9 && !gameOverText) {
+    setGameOverText('Game over. Draw');
+  }
+
+  const newRound = () => {
     grid.fill(' ');
     setGrid([...grid]);
     setMoves([]);
-    setGameOver(false);
+    setGameOverText('');
   };
 
   const reset = () => {
-    newGame();
+    newRound();
     setScore({ x: 0, o: 0 });
   };
 
@@ -53,7 +57,8 @@ export default function TicTacToe() {
     setMoves([...moves, whoseTurn]);
     let winner;
     if ((winner = findWinner(grid)) !== ' ') {
-      setGameOver(true);
+      setGameOverText(`Game over. ${winner} won!`);
+      console.log('caled');
       score[winner] += 1;
       setScore({ ...score });
     }
@@ -68,8 +73,8 @@ export default function TicTacToe() {
               <button
                 key={index}
                 onClick={() => cellClick(index)}
-                className={clsx({ active: grid[index] === ' ' && !gameOver })}
-                disabled={grid[index] !== ' ' || gameOver}
+                className={clsx({ active: grid[index] === ' ' && !gameOverText })}
+                disabled={grid[index] !== ' ' || gameOverText !== ''}
               >
                 {c}
               </button>
@@ -86,12 +91,12 @@ export default function TicTacToe() {
             ))}
           </div>
           <div>
-            <button onClick={newGame}>New Game</button>
+            <button onClick={newRound}>New Round</button>
           </div>
           <div>
             <button onClick={reset}>Reset</button>
           </div>
-          <div>{gameOver ? `Game over!` : null}</div>
+          <div>{gameOverText}</div>
         </div>
       </section>
     </Card>

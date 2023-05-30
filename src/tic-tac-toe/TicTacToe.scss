@@ -56,12 +56,14 @@
         width: 48px;
         > li {
           background-color: #888;
+          border: 1px solid transparent;
           text-align: center;
         }
         > :first-child {
           background-color: #666;
           &.active {
             background-color: $c4;
+            border: 1px solid #888;
           }
         }
       }
