@@ -5,15 +5,15 @@ import TicTacToe from './tic-tac-toe/TicTacToe';
 import Calculator from './calculator/Calculator';
 import CardMemoryGame from './card-memory-game/CardMemoryGame';
 import Sidebar from './sidebar/Sidebar';
-import Timer from './timer/Timer';
+import StopWatch from './stop-watch/StopWatch';
 import WordDefinition from './word-definition/WordDefinition';
 import DogImages from './dog-images/DogImages';
 
 function App() {
   const components = [
-    <TicTacToe />,
+    //<TicTacToe />,
     //Calculator,
-    <Timer />,
+    <StopWatch />,
     //CardMemoryGame,
     //WordDefinition,
     //DogImages,

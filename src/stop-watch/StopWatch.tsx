@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import Card from '../Card';
-import './Timer.scss';
+import './StopWatch.scss';
 
-export default function Timer() {
+export default function StopWatch() {
   return (
-    <Card header='Timer'>
-      <section className='Timer'>
+    <Card header='Stop Watch'>
+      <section className='StopWatch'>
         <p>Hello world!</p>
       </section>
     </Card>
