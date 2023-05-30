@@ -31,36 +31,37 @@ export default function TicTacToe() {
   const [grid, setGrid] = useState<CellOptions[]>(Array<CellOptions>(9).fill(' '));
   const [moves, setMoves] = useState<CellOptions[]>([]);
   const [gameOverText, setGameOverText] = useState<string>('');
+  const [roundCount, setRoundCount] = useState<number>(0);
   const [score, setScore] = useState({ x: 0, o: 0 });
-  const xsTurn = (moves.length + score['x'] + score['o']) % 2 === 0;
+  const xsTurn = (moves.length + roundCount) % 2 === 0;
   const whoseTurn = xsTurn ? 'x' : 'o';
-
-  if (moves.length == 9 && !gameOverText) {
-    setGameOverText('Game over. Draw');
-  }
 
   const newRound = () => {
     grid.fill(' ');
     setGrid([...grid]);
     setMoves([]);
     setGameOverText('');
+    setRoundCount(roundCount + 1);
   };
 
   const reset = () => {
     newRound();
     setScore({ x: 0, o: 0 });
+    setRoundCount(0);
   };
 
   const cellClick = (index: number) => {
     grid[index] = whoseTurn;
     setGrid([...grid]);
-    setMoves([...moves, whoseTurn]);
+    const newMoves: CellOptions[] = [...moves, whoseTurn];
+    setMoves(newMoves);
     let winner;
     if ((winner = findWinner(grid)) !== ' ') {
       setGameOverText(`Game over. ${winner} won!`);
-      console.log('caled');
       score[winner] += 1;
       setScore({ ...score });
+    } else if (newMoves.length == 9) {
+      setGameOverText('Game over. Draw');
     }
   };
 
@@ -68,7 +69,7 @@ export default function TicTacToe() {
     <Card header='Tic-Tac-Toe'>
       <section className='TicTacToe'>
         <div className='board'>
-          {grid.map((c, index) => {
+          {grid.map((cell_text, index) => {
             return (
               <button
                 key={index}
@@ -76,7 +77,7 @@ export default function TicTacToe() {
                 className={clsx({ active: grid[index] === ' ' && !gameOverText })}
                 disabled={grid[index] !== ' ' || gameOverText !== ''}
               >
-                {c}
+                {cell_text}
               </button>
             );
           })}
