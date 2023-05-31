@@ -5,7 +5,7 @@ import TicTacToe from './tic-tac-toe/TicTacToe';
 import Calculator from './calculator/Calculator';
 import CardMemoryGame from './card-memory-game/CardMemoryGame';
 import Sidebar from './sidebar/Sidebar';
-import StopWatch from './stop-watch/StopWatch';
+import Stopwatch from './stop-watch/Stopwatch';
 import WordDefinition from './word-definition/WordDefinition';
 import DogImages from './dog-images/DogImages';
 
@@ -13,7 +13,7 @@ function App() {
   const components = [
     //<TicTacToe />,
     //Calculator,
-    <StopWatch />,
+    <Stopwatch />,
     //CardMemoryGame,
     //WordDefinition,
     //DogImages,

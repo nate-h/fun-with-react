@@ -9,7 +9,7 @@ Examples:
 
 - [*] card: every example uses the same card component
 - [*] tic-tac-toe
-- [ ] stop watch
+- [ ] Stopwatch
 - [ ] use dictionary api to show info on words
 - [ ] use public dog api to display cute pics of dogs
 - [ ] calculator

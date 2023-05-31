@@ -1,11 +1,13 @@
 @use '../variables.scss' as *;
 
-.StopWatch {
+.Stopwatch {
   button {
     border: none;
     color: white;
     background-color: #666;
     border-radius: $br-1;
+    margin-right: 10px;
+    min-width: 100px;
   }
   .start {
     background-color: $c4;
