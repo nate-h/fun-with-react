@@ -49,9 +49,9 @@ export default function Stopwatch() {
   };
 
   return (
-    <Card header='Stopwatch' subheader='Modeled after iphone Stopwatch'>
+    <Card header='Stopwatch' subheader='Modeled after iPhone Stopwatch'>
       <section className='Stopwatch'>
-        {displayTime()}
+        <p>{displayTime()}</p>
         {startTime ? (
           <div>
             <button onClick={lap}>Lap</button>
@@ -67,6 +67,7 @@ export default function Stopwatch() {
             </button>
           </div>
         )}
+        <hr />
       </section>
     </Card>
   );

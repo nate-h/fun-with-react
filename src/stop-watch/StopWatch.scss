@@ -1,18 +1,36 @@
 @use '../variables.scss' as *;
 
 .Stopwatch {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    font-size: 30px;
+    margin-bottom: 5px;
+    font-family: 'Courier New';
+  }
   button {
     border: none;
     color: white;
     background-color: #666;
     border-radius: $br-1;
-    margin-right: 10px;
-    min-width: 100px;
+    min-width: 65px;
+
+    &:first-child {
+      margin-right: 10px;
+    }
   }
   .start {
     background-color: $c4;
   }
   .stop {
     background-color: crimson;
+  }
+
+  hr {
+    width: 100%;
   }
 }
