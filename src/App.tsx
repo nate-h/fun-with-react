@@ -12,8 +12,8 @@ import DogImages from './dog-images/DogImages';
 function App() {
   const components = [
     //<TicTacToe />,
-    //Calculator,
-    <Stopwatch />,
+    <Calculator />,
+    //<Stopwatch />,
     //CardMemoryGame,
     //WordDefinition,
     //DogImages,
