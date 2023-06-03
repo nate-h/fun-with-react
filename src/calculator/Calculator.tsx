@@ -51,13 +51,20 @@ export default function Calculator() {
       t = l / c;
     }
 
-    setLast('0');
-    setCurr(t.toString());
+    if (isFinite(t)) {
+      setCurr(t.toString());
+    } else {
+      setCurr('Error');
+    }
+    setLast('');
     setOp('');
   };
 
   const onNumberClick = (text: string) => {
-    if (curr == '0') {
+    if (op && !last) {
+      setLast(curr);
+      setCurr(text);
+    } else if (curr == '0') {
       setCurr(text);
     } else if (curr.length === 9) {
       return;
@@ -66,7 +73,10 @@ export default function Calculator() {
     }
   };
 
-  const times = (num: Number) => {};
+  const times = (num: number) => {
+    const c = +curr;
+    setCurr((num * c).toString());
+  };
 
   const press = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.nativeEvent.target as HTMLElement;
@@ -74,8 +84,8 @@ export default function Calculator() {
     if (!isNaN(+text)) {
       onNumberClick(text);
     } else if ('x-+÷'.includes(text)) {
-      setLast(curr);
       setOp(text);
+      setLast('');
     } else if (text === '=') {
       equals();
     } else if (text === '.') {
@@ -101,7 +111,11 @@ export default function Calculator() {
         <div className='display'>{formatNumber(curr)}</div>
         <div className='buttons'>
           {buttons.map((b) => (
-            <button key={b[0]} className={b[1]} onClick={press}>
+            <button
+              key={b[0]}
+              className={clsx(b[1], { 'op-selected': op === b[0] && !last })}
+              onClick={press}
+            >
               {b[0]}
             </button>
           ))}
