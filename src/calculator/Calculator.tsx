@@ -33,19 +33,19 @@ const buttons = [
 export default function Calculator() {
   const [last, setLast] = useState<string>('');
   const [curr, setCurr] = useState<string>('0');
-  const [operator, setOperator] = useState<string>('');
+  const [op, setOp] = useState<string>('');
 
   const equals = () => {
-    if (!operator) {
+    if (!op) {
       return;
     }
     let t = 0;
     const [l, c] = [+last, +curr];
-    if (operator === '+') {
+    if (op === '+') {
       t = l + c;
-    } else if (operator === '-') {
+    } else if (op === '-') {
       t = l - c;
-    } else if (operator === 'x') {
+    } else if (op === 'x') {
       t = l * c;
     } else {
       t = l / c;
@@ -53,13 +53,10 @@ export default function Calculator() {
 
     setLast('0');
     setCurr(t.toString());
-    setOperator('');
+    setOp('');
   };
 
   const onNumberClick = (text: string) => {
-    if (operator) {
-      setLast(curr);
-    }
     if (curr == '0') {
       setCurr(text);
     } else if (curr.length === 9) {
@@ -77,7 +74,8 @@ export default function Calculator() {
     if (!isNaN(+text)) {
       onNumberClick(text);
     } else if ('x-+÷'.includes(text)) {
-      setOperator(text);
+      setLast(curr);
+      setOp(text);
     } else if (text === '=') {
       equals();
     } else if (text === '.') {
@@ -87,7 +85,7 @@ export default function Calculator() {
     } else if (text === 'AC') {
       setCurr('0');
       setLast('');
-      setOperator('');
+      setOp('');
     } else if (text === '+/-') {
       times(-1);
     } else if (text === '%') {
@@ -113,7 +111,7 @@ export default function Calculator() {
       <br />
       curr: {curr}
       <br />
-      op: {operator}
+      op: {op}
     </Card>
   );
 }
