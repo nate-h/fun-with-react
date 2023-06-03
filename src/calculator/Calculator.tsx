@@ -4,37 +4,94 @@ import Card from '../Card';
 import './Calculator.scss';
 
 function formatNumber(strNumber: string): string {
+  // https://stackoverflow.com/a/2901298/2809674
   return strNumber.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+const buttons = [
+  ['AC', 'gray'],
+  ['+/-', 'gray'],
+  ['%', 'gray'],
+  ['÷', 'orange'],
+  ['7', ''],
+  ['8', ''],
+  ['9', ''],
+  ['x', 'orange'],
+  ['4', ''],
+  ['5', ''],
+  ['6', ''],
+  ['-', 'orange'],
+  ['1', ''],
+  ['2', ''],
+  ['3', ''],
+  ['+', 'orange'],
+  ['0', 'grow'],
+  ['.', ''],
+  ['=', 'orange'],
+];
+
 export default function Calculator() {
-  const [total, setTotal] = useState<string>('0');
+  const [last, setLast] = useState<string>('');
+  const [curr, setCurr] = useState<string>('0');
+  const [operator, setOperator] = useState<string>('');
+
+  const equals = () => {
+    if (!operator) {
+      return;
+    }
+    let t = 0;
+    const [l, c] = [+last, +curr];
+    if (operator === '+') {
+      t = l + c;
+    } else if (operator === '-') {
+      t = l - c;
+    } else if (operator === 'x') {
+      t = l * c;
+    } else {
+      t = l / c;
+    }
+
+    setLast('0');
+    setCurr(t.toString());
+    setOperator('');
+  };
+
+  const onNumberClick = (text: string) => {
+    if (operator) {
+      setLast(curr);
+    }
+    if (curr == '0') {
+      setCurr(text);
+    } else if (curr.length === 9) {
+      return;
+    } else {
+      setCurr(curr + text);
+    }
+  };
+
+  const times = (num: Number) => {};
 
   const press = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.nativeEvent.target as HTMLElement;
     const text = el.innerHTML;
     if (!isNaN(+text)) {
-      if (total == '0') {
-        setTotal(text);
-      } else if (total.length === 9) {
-        return;
-      } else {
-        setTotal(total + text);
-      }
+      onNumberClick(text);
     } else if ('x-+÷'.includes(text)) {
-      console.log(`operator: ${text}`);
+      setOperator(text);
     } else if (text === '=') {
-      console.log('equals');
+      equals();
     } else if (text === '.') {
-      if (!total.includes('.')) {
-        setTotal(total + '.');
+      if (!curr.includes('.')) {
+        setCurr(curr + '.');
       }
     } else if (text === 'AC') {
-      setTotal('0');
+      setCurr('0');
+      setLast('');
+      setOperator('');
     } else if (text === '+/-') {
-      console.log('+-');
+      times(-1);
     } else if (text === '%') {
-      console.log('percent');
+      times(0.01);
     } else {
       console.error('invalid option.');
     }
@@ -43,55 +100,20 @@ export default function Calculator() {
   return (
     <Card header='Calculator' subheader='iPhone clone'>
       <section className='Calculator'>
-        <div className='display'>{formatNumber(total)}</div>
-        <div className='row'>
-          <button className='gray' onClick={press}>
-            AC
-          </button>
-          <button className='gray' onClick={press}>
-            +/-
-          </button>
-          <button className='gray' onClick={press}>
-            %
-          </button>
-          <button className='orange' onClick={press}>
-            ÷
-          </button>
-        </div>
-        <div className='row'>
-          <button onClick={press}>7</button>
-          <button onClick={press}>8</button>
-          <button onClick={press}>9</button>
-          <button className='orange' onClick={press}>
-            x
-          </button>
-        </div>
-        <div className='row'>
-          <button onClick={press}>4</button>
-          <button onClick={press}>5</button>
-          <button onClick={press}>6</button>
-          <button className='orange' onClick={press}>
-            -
-          </button>
-        </div>
-        <div className='row'>
-          <button onClick={press}>1</button>
-          <button onClick={press}>2</button>
-          <button onClick={press}>3</button>
-          <button className='orange' onClick={press}>
-            +
-          </button>
-        </div>
-        <div className='row'>
-          <button className='grow' onClick={press}>
-            0
-          </button>
-          <button onClick={press}>.</button>
-          <button className='orange' onClick={press}>
-            =
-          </button>
+        <div className='display'>{formatNumber(curr)}</div>
+        <div className='buttons'>
+          {buttons.map((b) => (
+            <button key={b[0]} className={b[1]} onClick={press}>
+              {b[0]}
+            </button>
+          ))}
         </div>
       </section>
+      last: {last}
+      <br />
+      curr: {curr}
+      <br />
+      op: {operator}
     </Card>
   );
 }
