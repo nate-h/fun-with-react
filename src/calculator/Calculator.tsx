@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import Card from '../Card';
 import './Calculator.scss';
+import { ReactFitty } from 'react-fitty';
 
 function formatNumber(strNumber: string): string {
+  if (strNumber.replace('.', '').length > 9) {
+    return (+strNumber).toExponential(5);
+  }
   // https://stackoverflow.com/a/2901298/2809674
-  return strNumber.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const parts = strNumber.toString().split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return parts.join('.');
 }
 
 const buttons = [
@@ -34,6 +40,7 @@ export default function Calculator() {
   const [last, setLast] = useState<string>('');
   const [curr, setCurr] = useState<string>('0');
   const [op, setOp] = useState<string>('');
+  const display = formatNumber(curr);
 
   const equals = () => {
     if (!op) {
@@ -108,7 +115,9 @@ export default function Calculator() {
   return (
     <Card header='Calculator' subheader='iPhone clone'>
       <section className='Calculator'>
-        <div className='display'>{formatNumber(curr)}</div>
+        <div className='display'>
+          <ReactFitty maxSize={46}>{display}</ReactFitty>
+        </div>
         <div className='buttons'>
           {buttons.map((b) => (
             <button
@@ -121,11 +130,6 @@ export default function Calculator() {
           ))}
         </div>
       </section>
-      last: {last}
-      <br />
-      curr: {curr}
-      <br />
-      op: {op}
     </Card>
   );
 }
