@@ -1,24 +1,41 @@
 @use '../variables.scss' as *;
 
 .Stopwatch {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: auto;
+  background-color: black;
+  color: $t2;
+  padding: 10px;
+
+  .spread {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 
   p {
-    font-size: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 38px;
     margin-bottom: 5px;
     font-family: 'Courier New';
+    height: 70px;
   }
   button {
     border: none;
     color: white;
     background-color: #666;
-    border-radius: $br-1;
-    min-width: 65px;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 10px;
+
+    outline: 2px solid #666;
+    outline-offset: 2px;
 
     &:first-child {
       margin-right: 10px;
@@ -26,27 +43,36 @@
   }
   .start {
     background-color: $c4;
+    outline: 1px solid $c4;
   }
   .stop {
     background-color: crimson;
+    outline: 1px solid crimson;
   }
 
   hr {
     width: 100%;
+    border: none;
+    background-color: $t5;
+    height: 1px;
+    margin-top: 15px;
   }
   .lap-times {
     width: 100%;
     display: flex;
     flex-direction: column-reverse;
-    .spacer {
-      margin-right: auto;
-    }
 
     li {
-      font-family: 'Courier New';
-      font-size: 15px;
+      font-size: 13px;
       display: flex;
       justify-content: space-between;
+      border-bottom: 1px solid $t5;
+      padding: 4px;
+
+      :last-child {
+        font-family: 'Courier New';
+        font-size: 15px;
+      }
 
       &.slowest {
         color: crimson;

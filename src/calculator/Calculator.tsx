@@ -71,7 +71,7 @@ export default function Calculator() {
     if (op && !last) {
       setLast(curr);
       setCurr(text);
-    } else if (curr == '0') {
+    } else if (curr === '0') {
       setCurr(text);
     } else if (curr.length === 9) {
       return;

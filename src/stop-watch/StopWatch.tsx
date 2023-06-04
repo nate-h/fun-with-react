@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import clsx from 'clsx';
 import Card from '../Card';
 import './Stopwatch.scss';
@@ -72,36 +72,42 @@ export default function Stopwatch() {
   };
 
   return (
-    <Card header='Stopwatch' subheader='Modeled after iPhone Stopwatch'>
+    <Card header='Stopwatch' subheader='iPhone Clone'>
       <section className='Stopwatch'>
         <p>{totalDisplay}</p>
-        {currentTimer.current ? (
-          <div>
-            <button onClick={lap}>Lap</button>
-            <button onClick={endTimer} className='stop'>
-              Stop
-            </button>
-          </div>
-        ) : (
-          <div>
-            <button onClick={reset}>Reset</button>
-            <button onClick={startTimer} className='start'>
-              Start
-            </button>
-          </div>
-        )}
+        <div className='spread'>
+          {currentTimer.current ? (
+            <>
+              <button onClick={lap}>Lap</button>
+              <button onClick={endTimer} className='stop'>
+                Stop
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={reset}>Reset</button>
+              <button onClick={startTimer} className='start'>
+                Start
+              </button>
+            </>
+          )}
+        </div>
         <hr />
         <ul className='lap-times'>
           {lapTimes.map((dt, i) => {
             return (
               <li key={i} className={lapStyling(i)}>
-                <div className='spacer'>Lap {i + 1}</div> {formatDisplay(dt)}
+                <span>Lap {i + 1}</span>
+                <span>{formatDisplay(dt)}</span>
               </li>
             );
           })}
-          <li>
-            <div className='spacer'>Lap {lapTimes.length + 1}</div> {lapDisplay}
-          </li>
+          {totalDisplay !== '00:00:00' ? (
+            <li>
+              <span>Lap {lapTimes.length + 1}</span>
+              <span>{lapDisplay}</span>
+            </li>
+          ) : null}
         </ul>
       </section>
     </Card>
