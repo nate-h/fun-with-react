@@ -1,52 +1,27 @@
-import React, { ChangeEventHandler, useEffect, useState } from 'react';
-import clsx from 'clsx';
+import React, { useEffect, useState } from 'react';
 import Card from '../Card';
 import './DogImages.scss';
-
-// Use virtualized list?
-// Show random pic by default
+import { myFetch } from '../utils';
 
 export default function DogImages() {
-  // https://dog.ceo/api/breeds/image/random Fetch!
-
   const [breeds, setBreeds] = useState<string[]>([]);
-  const [breed, setBreed] = useState<string>('');
+  const [breed, setBreed] = useState<string>('collie');
   const [breedLinks, setBreedLinks] = useState<string[]>([]);
   const [picIndex, setPicIndex] = useState<number>(0);
+  const imageURL = breedLinks ? breedLinks[picIndex] : null;
 
   useEffect(() => {
-    fetch('https://dog.ceo/api/breeds/list/all')
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw res;
-      })
-      .then((j) => {
-        console.log('fetched');
-        setBreeds(Object.keys(j.message));
-      });
+    const url = 'https://dog.ceo/api/breeds/list/all';
+    myFetch(url, (msg: Object) => setBreeds(Object.keys(msg)));
+    myFetch(`https://dog.ceo/api/breed/${breed}/images`, setBreedLinks);
   }, []);
 
   const breedChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const breed = event.target.value;
     setBreed(breed);
     setPicIndex(0);
-
-    if (breed === 'Random') {
-      console.log('Random');
-    } else {
-      fetch(`https://dog.ceo/api/breed/${breed}/images`)
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-          throw res;
-        })
-        .then((j) => {
-          setBreedLinks(j.message);
-        });
-    }
+    setBreedLinks([]);
+    myFetch(`https://dog.ceo/api/breed/${breed}/images`, setBreedLinks);
   };
 
   return (
@@ -59,32 +34,31 @@ export default function DogImages() {
         <p className='todo'>use index-db</p>
         <p className='todo'>handle throw better</p>
         <br />
-        <select onChange={breedChange}>
-          <optgroup>
-            <option>Random</option>
-          </optgroup>
-          <optgroup label='_________'>
+        Select a breed:
+        {breeds ? (
+          <select onChange={breedChange} value={breed}>
             {breeds.map((b) => (
               <option key={b}>{b}</option>
             ))}
-          </optgroup>
-        </select>
+          </select>
+        ) : null}
         {breed ? (
           <>
             <br />
             <br />
             {picIndex + 1} / {breedLinks.length}
-            <br />
-            <br />
+            &nbsp;
             <button onClick={() => setPicIndex(Math.max(0, picIndex - 1))}>Prev</button>
             <button onClick={() => setPicIndex(Math.min(breedLinks.length - 1, picIndex + 1))}>
               Next
             </button>
             <br />
             <br />
-            <img src={breedLinks[picIndex]} alt={`Pic of ${breed}`} />
+            <br />
+            <br />
           </>
         ) : null}
+        {imageURL ? <img src={imageURL} alt={`Random pic: ${imageURL}`} /> : null}
       </section>
     </Card>
   );
