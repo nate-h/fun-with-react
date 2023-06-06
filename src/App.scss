@@ -42,3 +42,15 @@ h2 {
 button {
   transition-duration: 250ms;
 }
+
+a {
+  color: $c2;
+  text-decoration-line: none;
+  &:hover {
+    color: $c2-bright;
+  }
+}
+
+.todo {
+  color: crimson;
+}
