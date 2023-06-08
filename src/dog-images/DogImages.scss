@@ -1,5 +1,10 @@
+@use '../variables.scss' as *;
+
 .DogImages {
+  display: flex;
+  gap: 1em;
+  height: 200px;
   img {
-    width: 400px;
+    border-radius: $br-1;
   }
 }
