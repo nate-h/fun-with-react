@@ -66,8 +66,8 @@ export default function TicTacToe() {
   };
 
   return (
-    <Card header='Tic-Tac-Toe'>
-      <section className='TicTacToe'>
+    <Card header='Tic-Tac-Toe' id='TicTacToe'>
+      <section>
         <div className='board'>
           {grid.map((cell_text, index) => {
             return (

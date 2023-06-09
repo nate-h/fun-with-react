@@ -2,9 +2,12 @@ import React from 'react';
 import logo from '../logo.svg';
 import './Sidebar.scss';
 
-export default function Sidebar({ components }: { components: JSX.Element[] }) {
-  const linkClick = (component: JSX.Element) => {
-    console.log('goto: ', component.type.name);
+export default function Sidebar({ projects }: { projects: string[] }) {
+  const linkClick = (project: string) => {
+    const el = document.getElementById(project);
+    if (el) {
+      el.scrollIntoView();
+    }
   };
 
   return (
@@ -17,10 +20,10 @@ export default function Sidebar({ components }: { components: JSX.Element[] }) {
       <p>This website was created using react, scss, typescript and deployed using github-pages.</p>
       <h2>Mini Projects</h2>
       <ul>
-        {components.map((Component) => (
-          <li key={Component.type.name}>
-            <button className='link' onClick={() => linkClick(Component)}>
-              {Component.type.name}
+        {projects.map((p) => (
+          <li key={p}>
+            <button className='link' onClick={() => linkClick(p)}>
+              {p}
             </button>
           </li>
         ))}

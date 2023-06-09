@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './reset.scss';
 import './App.scss';
 import TicTacToe from './tic-tac-toe/TicTacToe';
@@ -10,25 +10,32 @@ import DogImages from './dog-images/DogImages';
 //import CardMemoryGame from './card-memory-game/CardMemoryGame';
 
 function App() {
-  const components = [
-    <TicTacToe />,
-    <Stopwatch />,
-    <Calculator />,
-    <DogImages />,
-    //CardMemoryGame,
-    //WordDefinition,
-  ];
+  const [projects, setProjects] = useState<string[]>([]);
+
+  useEffect(() => {
+    const el = document.getElementById('component-list');
+    if (el) {
+      setProjects(Array.from(el.children).map((c) => c.children[0].id));
+    }
+  }, []);
+
   return (
     <div className='App'>
-      <Sidebar components={components}></Sidebar>
+      <Sidebar projects={projects}></Sidebar>
       <main>
-        <ul>
-          {components.map((Component) => (
-            <li key={Component.type.name}>
-              {Component}
-              {String(Component.type)}
-            </li>
-          ))}
+        <ul id='component-list'>
+          <li>
+            <TicTacToe />
+          </li>
+          <li>
+            <Stopwatch />
+          </li>
+          <li>
+            <Calculator />
+          </li>
+          <li>
+            <DogImages />
+          </li>
         </ul>
       </main>
     </div>

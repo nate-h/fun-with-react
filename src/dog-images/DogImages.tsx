@@ -13,7 +13,7 @@ export default function DogImages() {
   useEffect(() => {
     const url = 'https://dog.ceo/api/breeds/list/all';
     myFetch(url, (msg: Object) => setBreeds(Object.keys(msg)));
-    myFetch(`https://dog.ceo/api/breed/${breed}/images`, setBreedLinks);
+    myFetch(`https://dog.ceo/api/breed/collie/images`, setBreedLinks);
   }, []);
 
   const breedChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -30,8 +30,8 @@ export default function DogImages() {
   };
 
   return (
-    <Card header='DogImages'>
-      <section className='DogImages'>
+    <Card header='DogImages' id='DogImages'>
+      <section>
         <aside>
           <p>Pick a dog breed to see a pic.</p>
           <p>
@@ -49,12 +49,12 @@ export default function DogImages() {
             <div>
               {picIndex + 1} / {breedLinks.length}
               &nbsp;
-              <button onClick={() => adjustPicIndex(-1)} disabled={picIndex == 0}>
+              <button onClick={() => adjustPicIndex(-1)} disabled={picIndex === 0}>
                 Prev
               </button>
               <button
                 onClick={() => adjustPicIndex(1)}
-                disabled={picIndex == breedLinks.length - 1}
+                disabled={picIndex === breedLinks.length - 1}
               >
                 Next
               </button>

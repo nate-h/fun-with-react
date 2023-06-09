@@ -1,6 +1,6 @@
 @use '../variables.scss' as *;
 
-.DogImages {
+#DogImages > main > section {
   display: flex;
   gap: 1em;
   height: 200px;

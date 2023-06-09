@@ -1,6 +1,6 @@
 @use '../variables.scss' as *;
 
-.Stopwatch {
+#Stopwatch > main > section {
   width: 200px;
   height: 250px;
   display: flex;

@@ -72,8 +72,8 @@ export default function Stopwatch() {
   };
 
   return (
-    <Card header='Stopwatch' subheader='iPhone Clone'>
-      <section className='Stopwatch'>
+    <Card header='Stopwatch' subheader='iPhone Clone' id='Stopwatch'>
+      <section>
         <p>{totalDisplay}</p>
         <div className='spread'>
           {currentTimer.current ? (

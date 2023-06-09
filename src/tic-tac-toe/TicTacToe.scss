@@ -1,6 +1,6 @@
 @use '../variables.scss' as *;
 
-.TicTacToe {
+#TicTacToe > main > section {
   display: flex;
   gap: 1rem;
 

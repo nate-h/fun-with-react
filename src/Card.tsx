@@ -7,7 +7,7 @@ const CardSubHeader = (props: any) => <h2 className='CardSubHeader'> {props.chil
 
 export default function Card(props: any) {
   return (
-    <section className='Card'>
+    <section className='Card' id={props.id}>
       {props.header && <CardHeader>{props.header}</CardHeader>}
       {props.subheader && <CardSubHeader>{props.subheader}</CardSubHeader>}
       <main>{props.children}</main>
