@@ -3,17 +3,17 @@ import './reset.scss';
 import './App.scss';
 import TicTacToe from './tic-tac-toe/TicTacToe';
 import Calculator from './calculator/Calculator';
-//import CardMemoryGame from './card-memory-game/CardMemoryGame';
 import Sidebar from './sidebar/Sidebar';
 import Stopwatch from './stop-watch/Stopwatch';
-//import WordDefinition from './word-definition/WordDefinition';
 import DogImages from './dog-images/DogImages';
+//import WordDefinition from './word-definition/WordDefinition';
+//import CardMemoryGame from './card-memory-game/CardMemoryGame';
 
 function App() {
   const components = [
-    //<TicTacToe />,
-    //<Stopwatch />,
-    //<Calculator />,
+    <TicTacToe />,
+    <Stopwatch />,
+    <Calculator />,
     <DogImages />,
     //CardMemoryGame,
     //WordDefinition,

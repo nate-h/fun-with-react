@@ -7,4 +7,26 @@
   img {
     border-radius: $br-1;
   }
+
+  select {
+    margin: 1em 0;
+  }
+
+  button {
+    background-color: $c4;
+    border: none;
+    color: $t3;
+    border-radius: $br-1;
+    padding: 3px;
+    margin-right: 0.25em;
+    min-width: 50px;
+    &:hover {
+      cursor: pointer;
+      background-color: $c4-bright;
+    }
+    &:disabled {
+      background-color: $c5;
+      cursor: default;
+    }
+  }
 }

@@ -37,9 +37,6 @@ export default function DogImages() {
           <p>
             Credit to <a href='https://dog.ceo/dog-api/'>the dog api</a> for the backend.
           </p>
-          <p className='todo'>use index-db</p>
-          <p className='todo'>handle throw better</p>
-          <br />
           Breed:&nbsp;
           {breeds ? (
             <select onChange={breedChange} value={breed}>
@@ -52,8 +49,15 @@ export default function DogImages() {
             <div>
               {picIndex + 1} / {breedLinks.length}
               &nbsp;
-              <button onClick={() => adjustPicIndex(-1)}>Prev</button>
-              <button onClick={() => adjustPicIndex(1)}>Next</button>
+              <button onClick={() => adjustPicIndex(-1)} disabled={picIndex == 0}>
+                Prev
+              </button>
+              <button
+                onClick={() => adjustPicIndex(1)}
+                disabled={picIndex == breedLinks.length - 1}
+              >
+                Next
+              </button>
             </div>
           ) : null}
         </aside>
