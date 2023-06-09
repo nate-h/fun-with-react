@@ -24,7 +24,10 @@ function App() {
       <main>
         <ul>
           {components.map((Component) => (
-            <li key={Component.type.name}>{Component}</li>
+            <li key={Component.type.name}>
+              {Component}
+              {String(Component.type)}
+            </li>
           ))}
         </ul>
       </main>
