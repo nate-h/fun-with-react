@@ -12,7 +12,6 @@ const myFetch = (url: string, onSuccess: OnSuccess) => {
     })
     .then((j) => {
       onSuccess(j.message);
-      console.log('winning');
     });
 };
 

@@ -29,6 +29,9 @@ function App() {
             <Wordle />
           </li>
           <li>
+            <DogImages />
+          </li>
+          <li>
             <TicTacToe />
           </li>
           <li>
@@ -36,9 +39,6 @@ function App() {
           </li>
           <li>
             <Calculator />
-          </li>
-          <li>
-            <DogImages />
           </li>
         </ul>
       </main>
