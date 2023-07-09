@@ -3,8 +3,6 @@ import Card from '../Card';
 import { useState } from 'react';
 import clsx from 'clsx';
 
-
-
 const allWords = [
   'blind',
   'sheet',
