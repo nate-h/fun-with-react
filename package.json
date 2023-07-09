@@ -28,7 +28,8 @@
     "test": "react-scripts test",
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint:fix": "eslint --fix src/**/*.{ts,tsx}",
-    "format": "prettier --write 'src/**/*.{ts,tsx,css,scss}' --config ./.prettierrc.json"
+    "format": "prettier --write 'src/**/*.{ts,tsx,css,scss}' --config ./.prettierrc.json",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -48,9 +49,14 @@
       "last 1 safari version"
     ]
   },
+  "lint-staged": {
+    "src/*.{ts,tsx,js,jsx,css,scss}": "prettier --write --config ./.prettierrc.json"
+  },
   "devDependencies": {
     "gh-pages": "^5.0.0",
+    "lint-staged": "^13.2.3",
     "prettier": "2.8.8",
-    "sass": "^1.62.1"
+    "sass": "^1.62.1",
+    "husky": "^8.0.0"
   }
 }
