@@ -5,8 +5,6 @@ import clsx from 'clsx';
 
 
 
-
-
 const allWords = [
   'blind',
   'sheet',
