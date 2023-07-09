@@ -1,4 +1,3 @@
-import React from 'react';
 import './Card.scss';
 
 const CardHeader = (props: any) => <h1 className='CardHeader'>{props.children}</h1>;

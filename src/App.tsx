@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './reset.scss';
 import './App.scss';
 import TicTacToe from './tic-tac-toe/TicTacToe';

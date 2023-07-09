@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import clsx from 'clsx';
 import Card from '../Card';
 import './Stopwatch.scss';

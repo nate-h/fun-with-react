@@ -1,6 +1,6 @@
 import './Wordle.scss';
 import Card from '../Card';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 
 const allWords = [
@@ -28,6 +28,7 @@ export default function Wordle() {
   const answer = 'hacks';
   const [guessCount, setGuessCount] = useState<number>(0);
   const [guesses, setGuesses] = useState<Array<Array<string>>>(Array(6).fill(Array(5).fill('')));
+  const loss = guessCount > 5;
 
   function press(char: string) {
     console.log(char);
@@ -37,13 +38,16 @@ export default function Wordle() {
     if (char === '') {
       return '';
     }
-    if (guessRow == guessCount) {
+    if (guessRow === guessCount) {
       return 'unevaluated';
     }
     return 'green';
   }
 
   function incrementGuessCount() {
+    if (guessCount > 5) {
+      return;
+    }
     setGuessCount(guessCount + 1);
   }
 
@@ -70,6 +74,7 @@ export default function Wordle() {
       <section className='Wordle'>
         <div className='guesses'>
           {`guess count: ${guessCount}`}
+          {` loss: ${loss}`}
           {guesses.map((guess, guessRow) => {
             return (
               <ul className='guess' key={guessRow}>
