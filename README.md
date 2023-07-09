@@ -11,11 +11,11 @@ Examples:
 - [x] tic-tac-toe
 - [x] Stopwatch
 - [x] use public dog api to display cute pics of dogs
+- [x] calculator
+- [ ] wordle
 - [ ] use dictionary api to show info on words
-- [ ] calculator
 - [ ] card memory game
 - [ ] todo-list
-- [ ] wordle
 - [ ] hangman
 - [ ] image manipulator
 - [ ] drawing app

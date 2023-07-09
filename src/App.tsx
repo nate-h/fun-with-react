@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './reset.scss';
 import './App.scss';
 import TicTacToe from './tic-tac-toe/TicTacToe';
@@ -6,6 +6,7 @@ import Calculator from './calculator/Calculator';
 import Sidebar from './sidebar/Sidebar';
 import Stopwatch from './stop-watch/Stopwatch';
 import DogImages from './dog-images/DogImages';
+import Wordle from './wordle/Wordle';
 //import WordDefinition from './word-definition/WordDefinition';
 //import CardMemoryGame from './card-memory-game/CardMemoryGame';
 
@@ -24,6 +25,9 @@ function App() {
       <Sidebar projects={projects}></Sidebar>
       <main>
         <ul id='component-list'>
+          <li>
+            <Wordle />
+          </li>
           <li>
             <TicTacToe />
           </li>
