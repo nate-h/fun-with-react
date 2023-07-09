@@ -3,6 +3,10 @@ import Card from '../Card';
 import { useState } from 'react';
 import clsx from 'clsx';
 
+
+
+
+
 const allWords = [
   'blind',
   'sheet',
@@ -52,7 +56,7 @@ export default function Wordle() {
   }
 
   function backspace() {
-    console.log('backspace');
+    console.log('backspace!');
   }
 
   function keyboardRow(row: string[]) {
