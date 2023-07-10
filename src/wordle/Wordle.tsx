@@ -25,13 +25,44 @@ const keyboard: Array<Array<string>> = [
 ];
 
 export default function Wordle() {
+  const [gamesPlayed, setGamesPlayed] = useState<number>(0);
+  const [gamesWon, setGamesWon] = useState<number>(0);
   const answer = 'hacks';
   const [guessCount, setGuessCount] = useState<number>(0);
-  const [guesses, setGuesses] = useState<Array<Array<string>>>(Array(6).fill(Array(5).fill('')));
-  const loss = guessCount > 5;
+  const [guesses, setGuesses] = useState<string[][]>(
+    Array.from(Array(6), (_) => Array(5).fill('')),
+  );
+
+  const won = guessCount > 0 && guesses[guessCount - 1].join('') === answer;
+  const gameOver = guessCount === 6 || won;
 
   function press(char: string) {
-    console.log(char);
+    if (gameOver) {
+      return;
+    }
+    const row = guesses[guessCount];
+    const index = row.indexOf('');
+    if (index === -1) {
+      return;
+    }
+    row[index] = char;
+    setGuesses([...guesses]);
+  }
+
+  function backspace() {
+    if (gameOver) {
+      return;
+    }
+    const row = guesses[guessCount];
+    const index = row.indexOf('');
+    if (index === 0) {
+      return;
+    } else if (index === -1) {
+      row[4] = '';
+    } else {
+      row[index - 1] = '';
+    }
+    setGuesses([...guesses]);
   }
 
   function charColor(guessRow: number, charIndex: number, char: string) {
@@ -41,19 +72,28 @@ export default function Wordle() {
     if (guessRow === guessCount) {
       return 'unevaluated';
     }
-    return 'green';
+
+    if (answer[charIndex] === char) {
+      return 'green';
+    } else if (answer.includes(char)) {
+      return 'yellow';
+    }
+    return 'gray';
   }
 
   function incrementGuessCount() {
-    if (guessCount > 5) {
+    if (gameOver || guessCount > 5) {
       return;
     }
     setGuessCount(guessCount + 1);
   }
 
-  function backspace() {
-    console.log('backspace!');
-  }
+  const resetGame = () => {
+    setGuessCount(0);
+    setGuesses(Array.from(Array(6), (_) => Array(5).fill('')));
+    setGamesWon(gamesWon + Number(won));
+    setGamesPlayed(gamesPlayed + 1);
+  };
 
   function keyboardRow(row: string[]) {
     {
@@ -73,8 +113,10 @@ export default function Wordle() {
     <Card header='Wordle'>
       <section className='Wordle'>
         <div className='guesses'>
-          {`guess count: ${guessCount}`}
-          {` loss: ${loss}`}
+          {` won: ${won}`}
+          <br />
+          {` gameOver: ${gameOver}`}
+          <br />
           {guesses.map((guess, guessRow) => {
             return (
               <ul className='guess' key={guessRow}>
@@ -108,6 +150,16 @@ export default function Wordle() {
               </button>
             </li>
           </ul>
+        </div>
+
+        <div className='score'>
+          <span>
+            🏆 {gamesWon} / {gamesPlayed}
+          </span>
+          {won ? <span>You Won! 😃</span> : null}
+          {!won && gameOver ? <span>You Lose! 😞</span> : null}
+
+          {gameOver ? <button onClick={resetGame}>New Game?</button> : null}
         </div>
       </section>
     </Card>
