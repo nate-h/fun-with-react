@@ -1,0 +1,44 @@
+%wordle-colors {
+  --cell-size: 2.5rem;
+  --key-size-w: 2rem;
+  --key-size-h: 2.5rem;
+  --color-tone-1: #1a1a1b;
+  --color-tone-2: #787c7e;
+  --color-tone-3: #878a8c;
+  --color-tone-4: #d3d6da;
+  --color-tone-5: #edeff1;
+  --color-tone-6: #f6f7f8;
+  --color-tone-7: #ffffff;
+  --green: #6aaa64;
+  --dark-green: #538d4e;
+  --yellow: #c9b458;
+  --dark-yellow: #b59f3b;
+  --gray: var(--color-tone-2);
+  --background: var(--color-tone-7);
+  --key-text-color: var(--color-tone-1);
+  --key-bg: var(--color-tone-4);
+}
+
+%wordle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-tone-1);
+  text-transform: uppercase;
+  font-weight: 700;
+  &.green {
+    color: white;
+    background-color: var(--green);
+    border-color: transparent;
+  }
+  &.yellow {
+    color: white;
+    background-color: var(--yellow);
+    border-color: transparent;
+  }
+  &.gray {
+    color: white;
+    background-color: var(--gray);
+    border-color: transparent;
+  }
+}

@@ -1,7 +1,8 @@
-import './Wordle.scss';
-import Card from '../Card';
-import { useState } from 'react';
 import clsx from 'clsx';
+import { useState } from 'react';
+import Card from '../Card';
+import './Wordle.scss';
+import Keyboard from './Keyboard';
 
 const allWords = [
   'blind',
@@ -14,15 +15,10 @@ const allWords = [
   'thump',
   'hacks',
   'bagel',
+  'quack',
 ];
 
 const possibleWords = ['hacks', 'bagel'];
-
-const keyboard: Array<Array<string>> = [
-  'qwertyuiop'.split(''),
-  'asdfghjkl'.split(''),
-  'zxcvbnm'.split(''),
-];
 
 export default function Wordle() {
   const [gamesPlayed, setGamesPlayed] = useState<number>(0);
@@ -40,19 +36,28 @@ export default function Wordle() {
     if (gameOver) {
       return;
     }
-    const row = guesses[guessCount];
-    const index = row.indexOf('');
-    if (index === -1) {
-      return;
+
+    if (char === 'enter') {
+      enter();
+    } else if (char === 'backspace') {
+      backspace();
+    } else {
+      pressChar(char);
     }
-    row[index] = char;
-    setGuesses([...guesses]);
+  }
+
+  function enter() {
+    const guess = guesses[guessCount];
+    if (guess.indexOf('') !== -1) {
+      console.log('TODO: Not enough letters');
+    } else if (allWords.indexOf(guess.join('')) === -1) {
+      console.log('TODO: Not in word list');
+    } else {
+      setGuessCount(guessCount + 1);
+    }
   }
 
   function backspace() {
-    if (gameOver) {
-      return;
-    }
     const row = guesses[guessCount];
     const index = row.indexOf('');
     if (index === 0) {
@@ -62,6 +67,16 @@ export default function Wordle() {
     } else {
       row[index - 1] = '';
     }
+    setGuesses([...guesses]);
+  }
+
+  function pressChar(char: string) {
+    const row = guesses[guessCount];
+    const index = row.indexOf('');
+    if (index === -1) {
+      return;
+    }
+    row[index] = char;
     setGuesses([...guesses]);
   }
 
@@ -81,13 +96,6 @@ export default function Wordle() {
     return 'gray';
   }
 
-  function incrementGuessCount() {
-    if (gameOver || guessCount > 5) {
-      return;
-    }
-    setGuessCount(guessCount + 1);
-  }
-
   const resetGame = () => {
     setGuessCount(0);
     setGuesses(Array.from(Array(6), (_) => Array(5).fill('')));
@@ -95,28 +103,10 @@ export default function Wordle() {
     setGamesPlayed(gamesPlayed + 1);
   };
 
-  function keyboardRow(row: string[]) {
-    {
-      return row.map((c) => {
-        return (
-          <li key={c}>
-            <button className='keyboard-key' onClick={() => press(c)}>
-              {c}
-            </button>
-          </li>
-        );
-      });
-    }
-  }
-
   return (
     <Card header='Wordle'>
       <section className='Wordle'>
         <div className='guesses'>
-          {` won: ${won}`}
-          <br />
-          {` gameOver: ${gameOver}`}
-          <br />
           {guesses.map((guess, guessRow) => {
             return (
               <ul className='guess' key={guessRow}>
@@ -134,23 +124,7 @@ export default function Wordle() {
 
         <br />
 
-        <div className='keyboard'>
-          <ul className='keyboard-row'>{keyboardRow(keyboard[0])}</ul>
-          <ul className='keyboard-row offset'>{keyboardRow(keyboard[1])}</ul>
-          <ul className='keyboard-row'>
-            <li>
-              <button className='keyboard-key enter' onClick={incrementGuessCount}>
-                enter
-              </button>
-            </li>
-            {keyboardRow(keyboard[2])}
-            <li>
-              <button className='keyboard-key backspace' onClick={backspace}>
-                ⌫
-              </button>
-            </li>
-          </ul>
-        </div>
+        <Keyboard press={press}></Keyboard>
 
         <div className='score'>
           <span>
