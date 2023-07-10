@@ -1,33 +1,32 @@
+/**
+ * MVP:
+ * - keyboard
+ * - hotkeys
+ * - popups
+ * - some animations
+ */
+
 import clsx from 'clsx';
 import { useState } from 'react';
 import Card from '../Card';
 import './Wordle.scss';
 import Keyboard from './Keyboard';
+import valid_words from './valid_words.json';
+import valid_answers from './valid_answers.json';
 
-const allWords = [
-  'blind',
-  'sheet',
-  'crush',
-  'relax',
-  'drain',
-  'label',
-  'expel',
-  'thump',
-  'hacks',
-  'bagel',
-  'quack',
-];
-
-const possibleWords = ['hacks', 'bagel'];
+// Shuffle answers.
+valid_answers.sort(() => (Math.random() > 0.5 ? 1 : -1));
 
 export default function Wordle() {
   const [gamesPlayed, setGamesPlayed] = useState<number>(0);
   const [gamesWon, setGamesWon] = useState<number>(0);
-  const answer = 'hacks';
+  const answer = valid_answers[gamesPlayed];
   const [guessCount, setGuessCount] = useState<number>(0);
   const [guesses, setGuesses] = useState<string[][]>(
     Array.from(Array(6), (_) => Array(5).fill('')),
   );
+
+  console.log(`Wordle answer: ${answer}`);
 
   const won = guessCount > 0 && guesses[guessCount - 1].join('') === answer;
   const gameOver = guessCount === 6 || won;
@@ -50,7 +49,7 @@ export default function Wordle() {
     const guess = guesses[guessCount];
     if (guess.indexOf('') !== -1) {
       console.log('TODO: Not enough letters');
-    } else if (allWords.indexOf(guess.join('')) === -1) {
+    } else if (valid_words.indexOf(guess.join('')) === -1) {
       console.log('TODO: Not in word list');
     } else {
       setGuessCount(guessCount + 1);
