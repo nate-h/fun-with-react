@@ -8,17 +8,13 @@ const keyboard: Array<Array<string>> = [
 
 export default function Keyboard({ press }: { press: (p: string) => void }) {
   function keyboardRow(row: string[]) {
-    {
-      return row.map((c) => {
-        return (
-          <li key={c}>
-            <button className='keyboard-key' onClick={() => press(c)}>
-              {c}
-            </button>
-          </li>
-        );
-      });
-    }
+    return row.map((c) => (
+      <li key={c}>
+        <button className='keyboard-key' onClick={() => press(c)}>
+          {c}
+        </button>
+      </li>
+    ));
   }
 
   return (

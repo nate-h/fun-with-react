@@ -1,15 +1,16 @@
 /**
  * MVP:
- * - keyboard
- * - hotkeys
- * - popups
+ * - keyboard colors
+ * - popup notifications
  * - some animations
+ * - some message about keyboard shortcuts on click
+ * - no lint errors
  */
 
-import clsx from 'clsx';
-import { useState } from 'react';
-import Card from '../Card';
 import './Wordle.scss';
+import clsx from 'clsx';
+import React, { useEffect, useState } from 'react';
+import Card from '../Card';
 import Keyboard from './Keyboard';
 import valid_words from './valid_words.json';
 import valid_answers from './valid_answers.json';
@@ -25,11 +26,19 @@ export default function Wordle() {
   const [guesses, setGuesses] = useState<string[][]>(
     Array.from(Array(6), (_) => Array(5).fill('')),
   );
-
-  console.log(`Wordle answer: ${answer}`);
-
   const won = guessCount > 0 && guesses[guessCount - 1].join('') === answer;
   const gameOver = guessCount === 6 || won;
+
+  useEffect(() => {
+    console.log(`Wordle answer: ${answer}`);
+  }, [answer]);
+
+  const resetGame = () => {
+    setGuessCount(0);
+    setGuesses(Array.from(Array(6), (_) => Array(5).fill('')));
+    setGamesWon(gamesWon + Number(won));
+    setGamesPlayed(gamesPlayed + 1);
+  };
 
   function press(char: string) {
     if (gameOver) {
@@ -40,7 +49,7 @@ export default function Wordle() {
       enter();
     } else if (char === 'backspace') {
       backspace();
-    } else {
+    } else if (/^[A-Z]$/i.test(char)) {
       pressChar(char);
     }
   }
@@ -95,16 +104,15 @@ export default function Wordle() {
     return 'gray';
   }
 
-  const resetGame = () => {
-    setGuessCount(0);
-    setGuesses(Array.from(Array(6), (_) => Array(5).fill('')));
-    setGamesWon(gamesWon + Number(won));
-    setGamesPlayed(gamesPlayed + 1);
+  const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    console.log('key up');
+    const key = e.key.toLowerCase();
+    press(key);
   };
 
   return (
     <Card header='Wordle'>
-      <section className='Wordle'>
+      <section className='Wordle' tabIndex={0} onKeyUp={onKeyUp}>
         <div className='guesses'>
           {guesses.map((guess, guessRow) => {
             return (
