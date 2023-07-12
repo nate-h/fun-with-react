@@ -111,7 +111,7 @@ export default function Wordle() {
   };
 
   return (
-    <Card header='Wordle'>
+    <Card header='Wordle' id='Wordle'>
       <section className='Wordle' tabIndex={0} onKeyUp={onKeyUp}>
         <div className='guesses'>
           {guesses.map((guess, guessRow) => {
