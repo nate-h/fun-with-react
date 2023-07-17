@@ -3,6 +3,7 @@
 .Wordle {
   @extend %wordle-colors;
   width: 380px;
+  position: relative;
   color: black;
   font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
   padding: 1rem;

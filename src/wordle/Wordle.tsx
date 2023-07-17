@@ -9,20 +9,24 @@
 
 import './Wordle.scss';
 import clsx from 'clsx';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Card from '../Card';
 import Keyboard from './Keyboard';
 import valid_words from './valid_words.json';
 import valid_answers from './valid_answers.json';
+import PopUp from '../pop-up/PopUp';
+import { useFocus } from '../utils';
 
 // Shuffle answers.
 valid_answers.sort(() => (Math.random() > 0.5 ? 1 : -1));
 
 export default function Wordle() {
-  const [gamesPlayed, setGamesPlayed] = useState<number>(0);
-  const [gamesWon, setGamesWon] = useState<number>(0);
+  const [wordleRef, setWordleFocus] = useFocus();
+  const [gamesPlayed, setGamesPlayed] = useState(0);
+  const [gamesWon, setGamesWon] = useState(0);
   const answer = valid_answers[gamesPlayed];
-  const [guessCount, setGuessCount] = useState<number>(0);
+  const [guessCount, setGuessCount] = useState(0);
+  const [popupText, setPopupText] = useState('');
   const [guesses, setGuesses] = useState<string[][]>(
     Array.from(Array(6), (_) => Array(5).fill('')),
   );
@@ -45,6 +49,8 @@ export default function Wordle() {
       return;
     }
 
+    setWordleFocus();
+
     if (char === 'enter') {
       enter();
     } else if (char === 'backspace') {
@@ -57,9 +63,9 @@ export default function Wordle() {
   function enter() {
     const guess = guesses[guessCount];
     if (guess.indexOf('') !== -1) {
-      console.log('TODO: Not enough letters');
+      setPopupText('Not 5 Letters');
     } else if (valid_words.indexOf(guess.join('')) === -1) {
-      console.log('TODO: Not in word list');
+      setPopupText('Invalid Word');
     } else {
       setGuessCount(guessCount + 1);
     }
@@ -105,14 +111,15 @@ export default function Wordle() {
   }
 
   const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log('key up');
     const key = e.key.toLowerCase();
     press(key);
   };
 
   return (
     <Card header='Wordle' id='Wordle'>
-      <section className='Wordle' tabIndex={0} onKeyUp={onKeyUp}>
+      <section className='Wordle' tabIndex={0} onKeyUp={onKeyUp} ref={wordleRef}>
+        <PopUp text={popupText} onClose={() => setPopupText('')}></PopUp>
+
         <div className='guesses'>
           {guesses.map((guess, guessRow) => {
             return (
