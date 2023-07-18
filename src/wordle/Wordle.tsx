@@ -1,15 +1,13 @@
 /**
  * MVP:
  * - keyboard colors
- * - popup notifications
  * - some animations
  * - some message about keyboard shortcuts on click
- * - no lint errors
  */
 
 import './Wordle.scss';
 import clsx from 'clsx';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../Card';
 import Keyboard from './Keyboard';
 import valid_words from './valid_words.json';
@@ -138,7 +136,7 @@ export default function Wordle() {
 
         <br />
 
-        <Keyboard press={press}></Keyboard>
+        <Keyboard press={press} answer={answer} guesses={guesses.slice(0, guessCount)}></Keyboard>
 
         <div className='score'>
           <span>

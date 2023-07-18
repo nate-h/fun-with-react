@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import './Keyboard.scss';
 
 const keyboard: Array<Array<string>> = [
@@ -6,11 +7,35 @@ const keyboard: Array<Array<string>> = [
   'zxcvbnm'.split(''),
 ];
 
-export default function Keyboard({ press }: { press: (p: string) => void }) {
+interface KeyboardProps {
+  press: (p: string) => void;
+  answer: string;
+  guesses: string[][];
+}
+
+export default function Keyboard({ press, answer, guesses }: KeyboardProps) {
+  const d = new Map<string, string>();
+  for (const guess of guesses) {
+    for (let i = 0; i < guess.length; ++i) {
+      const c = guess[i];
+      if (guess[i] == answer[i]) {
+        d.set(c, 'green');
+      } else if (d.get(c) != 'green' && answer.includes(c)) {
+        d.set(c, 'yellow');
+      } else if (!d.get(c)) {
+        d.set(c, 'gray');
+      }
+    }
+  }
+
+  function charColor(char: string) {
+    return d.get(char);
+  }
+
   function keyboardRow(row: string[]) {
     return row.map((c) => (
       <li key={c}>
-        <button className='keyboard-key' onClick={() => press(c)}>
+        <button className={clsx('keyboard-key', charColor(c))} onClick={() => press(c)}>
           {c}
         </button>
       </li>

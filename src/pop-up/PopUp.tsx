@@ -23,7 +23,7 @@ export default function PopUp({ text, timeMs, onClose }: ModalProps) {
         onClose();
       }, resolvedTime);
     }
-  }, [text, timeMs]);
+  }, [text, timeMs, onClose]);
 
   return isVisible ? <div className='PopUp'>{text}</div> : null;
 }
