@@ -1,6 +1,5 @@
 /**
- * MVP:
- * - keyboard colors
+ * Extra credit:
  * - some animations
  * - some message about keyboard shortcuts on click
  */
@@ -103,7 +102,20 @@ export default function Wordle() {
     if (answer[charIndex] === char) {
       return 'green';
     } else if (answer.includes(char)) {
-      return 'yellow';
+      // TODO: this is slow. Rewrite.
+      const row = guesses[guessRow];
+      const accurateSpots: number[] = row.map((r, i) => (r === answer[i] ? 1 : 0));
+      const countCorrect = accurateSpots.reduce((a, b) => a + b, 0);
+      const countCharInAnswer = answer.split(char).length - 1;
+      let countWrongSpotBeforeMe = 0;
+      for (let i = 0; i < charIndex; ++i) {
+        if (answer[i] !== char && row[i] === char) {
+          countWrongSpotBeforeMe += 1;
+        }
+      }
+      if (countCorrect + countWrongSpotBeforeMe < countCharInAnswer) {
+        return 'yellow';
+      }
     }
     return 'gray';
   }
