@@ -18,9 +18,9 @@ export default function Keyboard({ press, answer, guesses }: KeyboardProps) {
   for (const guess of guesses) {
     for (let i = 0; i < guess.length; ++i) {
       const c = guess[i];
-      if (guess[i] == answer[i]) {
+      if (guess[i] === answer[i]) {
         d.set(c, 'green');
-      } else if (d.get(c) != 'green' && answer.includes(c)) {
+      } else if (d.get(c) !== 'green' && answer.includes(c)) {
         d.set(c, 'yellow');
       } else if (!d.get(c)) {
         d.set(c, 'gray');
