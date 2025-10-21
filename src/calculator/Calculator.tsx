@@ -113,7 +113,7 @@ export default function Calculator() {
   };
 
   return (
-    <Card header='Calculator' subheader='iPhone clone' id='Calculator'>
+    <Card header='Calculator' subheader='(iPhone clone)' id='Calculator'>
       <section>
         <div className='display'>
           <ReactFitty maxSize={46}>{display}</ReactFitty>

@@ -7,6 +7,7 @@ import Sidebar from './sidebar/Sidebar';
 import Stopwatch from './stop-watch/Stopwatch';
 import DogImages from './dog-images/DogImages';
 import Wordle from './wordle/Wordle';
+import UserTable from './user-table/UserTable';
 //import WordDefinition from './word-definition/WordDefinition';
 //import CardMemoryGame from './card-memory-game/CardMemoryGame';
 
@@ -39,6 +40,9 @@ function App() {
           </li>
           <li>
             <Calculator />
+          </li>
+          <li>
+            <UserTable />
           </li>
         </ul>
       </main>
