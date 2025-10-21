@@ -1,7 +1,7 @@
 # Fun with React
 
-Fun with React is my attempt at learning some React basics by implementing 10
-popular simple apps like tic-tac-toe or Wordle.
+Fun with React is my way of trying to stay sharp with basic React concepts by implementing 10
+popular simple projects like tic-tac-toe or Wordle.
 
 Check out a live version here: https://nate-h.github.io/fun-with-react
 
