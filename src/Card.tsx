@@ -1,15 +1,27 @@
+import { ReactNode } from 'react';
 import './Card.scss';
 
-const CardHeader = (props: any) => <h1 className='CardHeader'>{props.children}</h1>;
+interface HeaderProps {
+  children: ReactNode;
+}
 
-const CardSubHeader = (props: any) => <h2 className='CardSubHeader'> {props.children}</h2>;
+const CardHeader = ({ children }: HeaderProps) => <h1 className='CardHeader'>{children}</h1>;
 
-export default function Card(props: any) {
+const CardSubHeader = ({ children }: HeaderProps) => <h2 className='CardSubHeader'> {children}</h2>;
+
+interface cardProps {
+  id?: string;
+  header?: string;
+  subheader?: string;
+  children: ReactNode;
+}
+
+export default function Card({ id, header, subheader, children }: cardProps) {
   return (
-    <section className='Card' id={props.id}>
-      {props.header && <CardHeader>{props.header}</CardHeader>}
-      {props.subheader && <CardSubHeader>{props.subheader}</CardSubHeader>}
-      <main>{props.children}</main>
+    <section className='Card' id={id}>
+      {header && <CardHeader>{header}</CardHeader>}
+      <main>{children}</main>
+      {subheader && <CardSubHeader>{subheader}</CardSubHeader>}
     </section>
   );
 }
