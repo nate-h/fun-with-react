@@ -1,0 +1,43 @@
+{
+  "name": "Root",
+  "type": "directory",
+  "children": [
+    {
+      "name": "Documents",
+      "type": "directory",
+      "children": [
+        {
+          "name": "Report.docx",
+          "type": "file",
+          "size": "2MB"
+        },
+        {
+          "name": "Presentation.pptx",
+          "type": "file",
+          "size": "5MB"
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "type": "directory",
+      "children": [
+        {
+          "name": "Vacation.jpg",
+          "type": "file",
+          "size": "1MB"
+        },
+        {
+          "name": "Family.png",
+          "type": "file",
+          "size": "0.5MB"
+        }
+      ]
+    },
+    {
+      "name": "readme.txt",
+      "type": "file",
+      "size": "0.1MB"
+    }
+  ]
+}

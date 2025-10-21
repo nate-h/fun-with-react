@@ -44,7 +44,6 @@ export default function UserTable() {
 
   useEffect(() => {
     fetchData(DATA_URL).then((data) => {
-      console.log(data);
       const newUsers: User[] = [];
       for (const tempUser of data.results) {
         const loc = tempUser.location;

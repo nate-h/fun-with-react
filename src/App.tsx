@@ -8,6 +8,7 @@ import Stopwatch from './stop-watch/Stopwatch';
 import DogImages from './dog-images/DogImages';
 import Wordle from './wordle/Wordle';
 import UserTable from './user-table/UserTable';
+import FileExplorer from './file-explorer/FileExplorer';
 //import WordDefinition from './word-definition/WordDefinition';
 //import CardMemoryGame from './card-memory-game/CardMemoryGame';
 
@@ -43,6 +44,9 @@ function App() {
           </li>
           <li>
             <UserTable />
+          </li>
+          <li>
+            <FileExplorer />
           </li>
         </ul>
       </main>
