@@ -61,6 +61,9 @@ export default function UserTable() {
   return (
     <Card header='UserTable' id='UserTable'>
       <section>
+        <br />
+        <h2>Fetches data from a website using axios.</h2>
+        <br />
         <table className={'user-table'}>
           <thead>
             <tr>

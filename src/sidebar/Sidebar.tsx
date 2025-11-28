@@ -17,6 +17,10 @@ export default function Sidebar({ projects }: { projects: string[] }) {
       </h1>
       <br />
       <p>This website was created using react, scss, typescript and deployed using github-pages.</p>
+      <br />
+      <p>
+        I'm intentionally avoiding using component libraries so I can build things from scratch.
+      </p>
       <h2>Mini Projects</h2>
       <ul>
         {projects.map((p) => (

@@ -4,20 +4,33 @@
   $small-pad: 5px;
   $large-pad: 1em;
   background-color: $bg-1;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 800px;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.22),
+      0 0 0 1px rgba(0, 0, 0, 0.2);
+  }
 
   .CardHeader {
-    margin-left: -3px;
-    padding: $small-pad $large-pad $small-pad $large-pad;
+    margin: 0;
+    padding: $large-pad;
+    font-weight: 600;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
   }
 
   .CardSubHeader {
     padding: 0 $large-pad $small-pad $large-pad;
+    opacity: 0.85;
   }
 
   > main {
-    background-color: $bg-2;
-    padding: $small-pad $large-pad $large-pad $large-pad;
+    padding: $large-pad;
   }
 }

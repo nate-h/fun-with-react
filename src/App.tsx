@@ -9,6 +9,7 @@ import DogImages from './dog-images/DogImages';
 import Wordle from './wordle/Wordle';
 import UserTable from './user-table/UserTable';
 import FileExplorer from './file-explorer/FileExplorer';
+import PostViewer from './post-viewer/PostViewer';
 //import WordDefinition from './word-definition/WordDefinition';
 //import CardMemoryGame from './card-memory-game/CardMemoryGame';
 
@@ -47,6 +48,9 @@ function App() {
           </li>
           <li>
             <FileExplorer />
+          </li>
+          <li>
+            <PostViewer />
           </li>
         </ul>
       </main>

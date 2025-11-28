@@ -12,8 +12,8 @@ Examples:
 - [x] Stopwatch
 - [x] use public dog api to display cute pics of dogs
 - [x] calculator
-- [ ] wordle
-- [ ] file tree
+- [x] wordle
+- [x] file tree
 - [ ] use dictionary api to show info on words
 - [ ] card memory game
 - [ ] todo-list
