@@ -10,18 +10,17 @@
   > main {
     overflow: auto;
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 1em;
 
     > ul {
-      width: 100%;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-wrap: wrap;
+      gap: 1em;
+      justify-content: left;
 
       > li {
-        margin: 1em;
+        flex: 1 1 400px;
+        max-width: 600px;
       }
     }
   }

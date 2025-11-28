@@ -32,19 +32,19 @@ function App() {
             <Wordle />
           </li>
           <li>
-            <DogImages />
-          </li>
-          <li>
-            <TicTacToe />
+            <Calculator />
           </li>
           <li>
             <Stopwatch />
           </li>
           <li>
-            <Calculator />
+            <DogImages />
           </li>
           <li>
             <UserTable />
+          </li>
+          <li>
+            <TicTacToe />
           </li>
           <li>
             <FileExplorer />

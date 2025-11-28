@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import Card from '../Card';
 import './UserTable.scss';
 
-const DATA_URL = 'https://randomuser.me/api/?results=10';
+const DATA_URL = 'https://randomuser.me/api/?results=5';
 
 interface User {
   name: string;
