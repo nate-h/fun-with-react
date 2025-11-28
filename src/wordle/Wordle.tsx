@@ -102,11 +102,12 @@ export default function Wordle() {
     if (answer[charIndex] === char) {
       return 'green';
     } else if (answer.includes(char)) {
-      // TODO: this is slow. Rewrite.
       const row = guesses[guessRow];
-      const accurateSpots: number[] = row.map((r, i) => (r === answer[i] ? 1 : 0));
-      const countCorrect = accurateSpots.reduce((a, b) => a + b, 0);
+      // Count how many times this specific char is in the correct position (green)
+      const countCorrect = row.filter((r, i) => r === char && answer[i] === char).length;
+      // Count how many times this char appears in the answer
       const countCharInAnswer = answer.split(char).length - 1;
+      // Count how many times this char appears in wrong positions before current index
       let countWrongSpotBeforeMe = 0;
       for (let i = 0; i < charIndex; ++i) {
         if (answer[i] !== char && row[i] === char) {
