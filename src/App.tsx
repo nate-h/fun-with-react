@@ -41,13 +41,13 @@ function App() {
             <DogImages />
           </li>
           <li>
-            <UserTable />
-          </li>
-          <li>
             <TicTacToe />
           </li>
           <li>
             <FileExplorer />
+          </li>
+          <li>
+            <UserTable />
           </li>
           <li>
             <PostViewer />
