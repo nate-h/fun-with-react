@@ -46,6 +46,7 @@ const DirectoryEl = ({ directory, indent }: { directory: Directory; indent: numb
           fontSize: '1em',
           textAlign: 'left',
           width: '100%',
+          color: 'white',
         }}
         aria-expanded={isExpanded}
         aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${directory.name} directory`}
