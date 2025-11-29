@@ -30,7 +30,7 @@ export default function DogImages() {
   };
 
   return (
-    <Card header='DogImages' id='DogImages'>
+    <Card header='Dog Images' id='DogImages'>
       <section>
         <aside>
           <p>Pick a dog breed to see a pic.</p>

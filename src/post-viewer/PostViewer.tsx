@@ -1,6 +1,7 @@
 import Card from '../Card';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import './PostViewer.scss';
 
 type Reaction = {
   likes: number;
@@ -37,26 +38,48 @@ export default function PostViewer() {
   }, []);
 
   if (loading) {
-    return <div>loading...</div>;
+    return (
+      <Card header='Post Viewer' id='PostViewer'>
+        <div className='loading'>Loading post...</div>
+      </Card>
+    );
   }
   if (!post) {
-    return <div>No post found</div>;
+    return (
+      <Card header='Post Viewer' id='PostViewer'>
+        <div className='error'>No post found</div>
+      </Card>
+    );
   }
 
   return (
-    <Card header='PostViewer' id='PostViewer'>
-      <div>{post.title}</div>
-      <div>{post.userId}</div>
-      <div>{post.body}</div>
-      <ul>
-        {post.tags.map((tag) => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
-      <div>
-        Reactions:
-        <div>{post.reactions.likes}</div>
-        <div>{post.reactions.dislikes}</div>
+    <Card header='Post Viewer' id='PostViewer'>
+      <div className='post-content'>
+        <div className='post-header'>
+          <h2>{post.title}</h2>
+          <span className='user-badge'>User {post.userId}</span>
+        </div>
+
+        <div className='post-body'>{post.body}</div>
+
+        {post.tags.length > 0 && (
+          <ul className='tags'>
+            {post.tags.map((tag) => (
+              <li key={tag}>{tag}</li>
+            ))}
+          </ul>
+        )}
+
+        <div className='reactions'>
+          <div className='reaction'>
+            <span className='emoji'>👍</span>
+            <span className='count'>{post.reactions.likes}</span>
+          </div>
+          <div className='reaction'>
+            <span className='emoji'>👎</span>
+            <span className='count'>{post.reactions.dislikes}</span>
+          </div>
+        </div>
       </div>
     </Card>
   );
