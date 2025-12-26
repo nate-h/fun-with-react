@@ -10,6 +10,7 @@ import Wordle from './wordle/Wordle';
 import UserTable from './user-table/UserTable';
 import FileExplorer from './file-explorer/FileExplorer';
 import PostViewer from './post-viewer/PostViewer';
+import BarChart from './bar-chart/BarChart';
 //import WordDefinition from './word-definition/WordDefinition';
 //import CardMemoryGame from './card-memory-game/CardMemoryGame';
 
@@ -51,6 +52,9 @@ function App() {
           </li>
           <li>
             <PostViewer />
+          </li>
+          <li>
+            <BarChart />
           </li>
         </ul>
       </main>
